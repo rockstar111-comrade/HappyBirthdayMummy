@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mom! ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .birthday-title {
+            font-size: 4rem;
+            color: #e63946;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+         @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        } 
+
+        .birthday-subtitle {
+            font-size: 1.8rem;
+            color: #457b9d;
+            margin-bottom: 10px;
+        }
+
+
+        .photo-gallery {
+            position: relative;
+            margin: 50px 0;
+            min-height: 800px;
+        }
+
+        .gallery-container {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 80px;
+            padding: 50px 20px;
+        }
+
+        .hanging-photo {
+            position: relative;
+            transform-origin: top center;
+            animation: gentle-sway 6s ease-in-out infinite;
+            animation-delay: calc(var(--delay) * 1s);
+        }
+
+        @keyframes gentle-sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .thread {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            width: 3px;
+            height: 80px;
+            background: linear-gradient(to bottom, #8d6e63, #5d4037);
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transform: translateX(-50%);
+        }
+
+        .thread::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #5d4037;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .pin {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #f44336;
+            font-size: 1.8rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+    
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border: 12px solid white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            transform: rotate(var(--rotation));
+            transition: all 0.3s ease;
+        }
+
+        .hanging-photo:hover .photo-frame {
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .hanging-photo:hover .photo-frame img {
+            transform: scale(1.1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #1d3557;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .hanging-photo:hover .photo-caption {
+            transform: translateY(0);
+        }
+
+    
+        .message-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .message-title {
+            font-size: 2.5rem;
+            color: #e63946;
+            margin-bottom: 30px;
+        }
+
+        .message-content {
+            font-size: 1.0rem;
+            line-height: 1.8;
+            color: #1d3557;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+    
+        .wishes-section {
+            margin: 50px 0;
+        }
+
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 180px;
+            backdrop-filter: blur(10px);
+        }
+
+        .wish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .wish-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .wish-text {
+            font-size: 1.1rem;
+            color: #1d3557;
+            font-weight: 600;
+        }
+
+        .surprise-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(45deg, #e63946, #f4a261);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .surprise-message {
+            display: none;
+            background: rgba(29, 53, 87, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            animation: fadeIn 1s;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #0a0b0b;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 8s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .message-title {
+                font-size: 2rem;
+            }
+            
+            .message-content {
+                font-size: 1.1rem;
+            }
+            
+            .photo-frame {
+                width: 150px;
+                height: 150px;
+                border-width: 8px;
+            }
+            
+            .gallery-container {
+                gap: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="floating-element" style="left: 5%; animation-delay: 0s;">💖</div>
+    <div class="floating-element" style="left: 15%; animation-delay: 1s;">💖</div>
+    <div class="floating-element" style="left: 25%; animation-delay: 2s;">💖</div>
+    <div class="floating-element" style="left: 35%; animation-delay: 3s;">💖</div>
+    <div class="floating-element" style="left: 45%; animation-delay: 4s;">💖</div>
+    <div class="floating-element" style="left: 55%; animation-delay: 5s;">💖</div>
+    <div class="floating-element" style="left: 65%; animation-delay: 6s;">💖</div>
+    <div class="floating-element" style="left: 75%; animation-delay: 7s;">💖</div>
+    <div class="floating-element" style="left: 85%; animation-delay: 8s;">💖</div>
+    <div class="floating-element" style="left: 95%; animation-delay: 9s;">💖</div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="birthday-title">Happy Birthday, Mummy</h1>
+            <p class="birthday-subtitle">Celebrating the most wonderful woman in the world</p>
+        </div>
+
+        <div class="photo-gallery">
+            <div class="gallery-container">
+                <div class="hanging-photo" style="--delay: 0; --rotation: -5deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-map-pin"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\mom1.jpg.jpg" alt="Mom Photo 1">
+                        <div class="photo-caption">Always Smiling</div>
+                    </div>
+                </div>
+
+                <div class="hanging-photo" style="--delay: 0.5; --rotation: 3deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-thumbtack"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\IMG-20250826-WA0011.jpg" alt="Mom Photo 2">
+                        <div class="photo-caption">Full of Love</div>
+                    </div>
+                </div>
+
+                <div class="hanging-photo" style="--delay: 1; --rotation: -3deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-map-pin"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\IMG-20250826-WA0012.jpg" alt="Mom Photo 3">
+                        <div class="photo-caption">Simply Amazing</div>
+                    </div>
+                </div>
+
+                <div class="hanging-photo" style="--delay: 1.5; --rotation: 4deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-thumbtack"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\IMG-20250826-WA0017.jpg" alt="Mom Photo 4">
+                        <div class="photo-caption">Forever Young</div>
+                    </div>
+                </div>
+
+                <div class="hanging-photo" style="--delay: 2; --rotation: -2deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-map-pin"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\IMG-20250826-WA0014.jpg" alt="Mom Photo 5">
+                        <div class="photo-caption">Pure Happiness</div>
+                    </div>
+                </div>
+
+                <div class="hanging-photo" style="--delay: 2.5; --rotation: 2deg;">
+                    <div class="thread"></div>
+                    <div class="pin"><i class="fas fa-thumbtack"></i></div>
+                    <div class="photo-frame">
+                        <img src="images\WhatsApp Image 2025-08-26 at 19.05.53_15bb3ab3.jpg" alt="Mom Photo 6">
+                        <div class="photo-caption">Timeless Beauty</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="message-section">
+            <h2 class="message-title">A Special Message for You</h2>
+            <div class="message-content">
+               <p>🌸 <strong>Happy Birthday Amma!</strong> 🌸</p>
+
+<p>Amma, today is not just your birthday -it’s a celebration of the most powerful, loving, and caring woman I know. You are not just my mother, you are my world, my backbone, my safe place, and the only woman I will always trust with my life.</p>
+
+<p>I know sometimes you shout at me, especially when you are tired or going through your tough days. But Amma, I always understand. I know those shouts are not from anger, they are from love, from worry, and from the weight you carry for all of us. Even when you feel guilty later and think, “Why did I shout?”, I want you to know ,I never take it to heart, because I know the love behind it.</p>
+
+<p>You’ve had so many health struggles, yet the moment we enter the house, you put your pain aside, tie your dupatta, and step into the kitchen like a superhero. You cook not just food, but happiness for us. Even when your body is asking for rest, you fight through the pain only to give us comfort. That’s why Amma, you are not just a mothe you are a fighter, a warrior, and an inspiration.</p>
+
+<p>And Amma… your cooking? Ayyo! 😍 That’s another level. No chef in the world can match the magic in your hands. The mutton curry you make only I can eat it the way you prepare it. The taste is beyond heaven. And your biryani… I don’t even have words for it. If biryani had an award, yours would win “Best in the Universe.” 🤤 Sometimes, even in the hostel, we just sit and dream of your food. Honestly, we may be far away, but every day, our hearts are in your kitchen.</p>
+
+<p>Amma, you try to give us the best in every way even when you have less for yourself. You sacrifice without showing it, you smile even when you are in pain, and you still make us feel like we are the most special people in the world. That’s why you are not only our Amma, you are also the <strong>Home Minister</strong> of our house. (And let’s be honest, Daddy is just the Prime Minister for name sake 🤭—real power is in your hands!).</p>
+
+<p>The way you and Daddy call each other is pure comedy gold. You calling Daddy “Bavaaaa!” and Daddy calling you “Naniii!” wahhh, that’s like watching a live TV serial in our own house 🤣. Sometimes, the way you say “Chudu bava, it should make you….” before going to functions, and we stand there laughing like crazy that’s the fun only our family can create.</p>
+
+<p>I love how we all make fun of you while you’re getting ready for weddings or functions. You get serious for 2 minutes, then you join in the laughter yourself 😅. Those little moments, Amma, are treasures for me.</p>
+
+<p>You have faced so many storms in life. Problems came one after another, but you stood strong and never let them defeat you. You turned struggles into strength, pain into patience, and sacrifices into smiles. That’s why, for me, you are not just a mother you are the queen of our kingdom and the warrior who built our home.</p>
+
+<p>I love those little moments with you helping in the kitchen, stealing snacks while you pretend not to notice, laughing when you scold me and then feed me immediately after. Amma, only with you can life feel so warm, funny, and safe at the same time.</p>
+
+<p>No matter how far I go, no matter how much life changes, I want you to know one thing: We may be away in hostel, but every single day, we think of you, we miss you, and we carry your love in our hearts.</p>
+
+<p>So Amma, on this birthday, I just want to tell you… You are my first teacher, my best friend, my forever queen, my private chef, my Home Minister, my inspiration, and above all my everything.</p>
+
+<p>✨ <strong>Happy Birthday Amma!</strong> ✨  
+May all the love you give us come back to you in double, may your health become stronger, your smile become brighter, and may you always know you are the reason we are who we are today. ❤️</p>
+
+            </div>
+        </div>
+
+        <div class="wishes-section">
+            <div class="wishes-container">
+                <div class="wish-card">
+                    <div class="wish-icon">💖</div>
+                    <div class="wish-text">Unconditional Love</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-icon">🌟</div>
+                    <div class="wish-text">Good Health</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-icon">🎁</div>
+                    <div class="wish-text">Endless Joy</div>
+                </div>
+                
+                <div class="wish-card">
+                    <div class="wish-icon">💐</div>
+                    <div class="wish-text">Beautiful Moments</div>
+                </div>
+                <div class="wish-card">
+                    <div class="wish-icon">🎉</div>
+                    <div class="wish-text">Perfect Celebration</div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+ 
+        <div class="footer">
+           <b> <p> ❤️ Happy Birthday Amma! You are the strongest, funniest, most loving mother — 
+    a true warrior who cooks, cares, loves, and fills our lives with endless joy. 
+    We love you more than words can ever say. ❤️</p></b>
+        </div>
+    </div>
+
+    <script>
+        function showSurprise() {
+            const surpriseMessage = document.getElementById('surpriseMessage');
+            surpriseMessage.style.display = 'block';
+    
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 100);
+            }
+            
+            surpriseMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '-50px';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.zIndex = '1000';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'floatUp 4s ease-out forwards';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes floatUp {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        document.querySelectorAll('.hanging-photo').forEach(photo => {
+            photo.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2) rotate(0deg)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 
